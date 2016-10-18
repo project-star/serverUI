@@ -4,7 +4,8 @@ import { check } from 'meteor/check';
 
 Meteor.methods({
   updateScore: function (playerId) {
-    check(playerId, String);
-    Players.update(playerId, { $inc: { score: 5 }});
+//    check(playerId, String);
+//    Players.update(playerId, { $inc: { score: 5 }});
+      return
   }
 });

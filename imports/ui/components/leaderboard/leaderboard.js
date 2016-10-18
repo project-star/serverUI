@@ -12,11 +12,15 @@ Template.leaderboard.helpers({
 		return { 'class': 'easy-search-input', 'placeholder': 'Start searching...' };
 	},
 	players: function () {
-		return Players.find({}, { sort: { score: -1, name: 1 } });
+                console.log (Players.find({}))
+                var value = Players.find().fetch();
+
+
+                return value;
 	},
 	selectedName: function () {
 		var player = PlayersIndex.config.mongoCollection.findOne({ __originalId: Session.get("selectedPlayer") });
-		return player && player.name;
+		return player;
 	},
 	index: function () {
 		return PlayersIndex;
@@ -36,7 +40,15 @@ Template.leaderboard.events({
 	},
 	'change .category-filter': function (e) {
 		PlayersIndex.getComponentMethods()
-			.addProps('categoryFilter', $(e.target).val())
-		;
+			.addProps('categoryFilter', $(e.target).val());
 	}
+
 });
+
+Template.leaderboard.try=function(){
+    console.log(Players.find().fetch());
+    var value = Players.find().fetch();
+    
+         
+    return value;
+}

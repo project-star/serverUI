@@ -1,24 +1,22 @@
-import { Players } from './players.js';
+import { Renoted } from './renoted.js';
 import { EasySearch } from 'meteor/easy:search';
 import { _ } from 'meteor/underscore';
 
-export const PlayersIndex = new EasySearch.Index({
+export const RenotedIndex = new EasySearch.Index({
   engine: new EasySearch.MongoDB({
-    sort: function () {
-      return { renoted_id: -1 };
-    },
     selector: function (searchObject, options, aggregation) {
       let selector = this.defaultConfiguration().selector(searchObject, options, aggregation),
         categoryFilter = options.search.props.categoryFilter;
+
       if (_.isString(categoryFilter) && !_.isEmpty(categoryFilter)) {
-        selector.tags = categoryFilter;
+        selector.text != categoryFilter;
       }
 
       return selector;
     }
   }),
-  collection: Players,
-  fields: ['renoted_id','tags','document.web_uri','text','quotedtext','document.title'],
+  collection: Renoted,
+  fields: ['renoted_id'],
   defaultSearchOptions: {
     limit: 8
   },

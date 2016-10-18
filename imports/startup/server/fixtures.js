@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Players } from '../../api/players/players.js';
-
+import { Renoted } from '../../api/renoted/renoted.js';
 var first_names = [
       "Ada",
       "Grace",
@@ -30,7 +30,7 @@ var first_names = [
     categories = ["Genius", "Geek", "Hipster", "Idler"];
 
   Meteor.startup(function () {
-    if (Players.find().count() < 100) {
+    if (Players.find().count() < 1) {
       // ten thousand docs
       for (var i = 0; i < 10 * 1000; i++) {
         console.log(i + ' doc indexed');

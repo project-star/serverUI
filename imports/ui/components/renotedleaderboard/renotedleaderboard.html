@@ -1,44 +1,40 @@
-<template name="leaderboard">
+<template name="renotedleaderboard">
   {{> EasySearch.Input index=index attributes=inputAttributes }}
 
   {{#EasySearch.IfInputEmpty index=index }}
-    <div class="padded examples"></div>
+    <div class="padded examples">For example "143756789"</div>
   {{else}}
     {{#if resultsCount}}
       <div class="padded count-results">{{resultsCount}} results found.</div>
     {{/if}}
   {{/EasySearch.IfInputEmpty}}
-  Select Tags to filter:
+
   <select class="category-filter">
     <option value="">All</option>
-     {{#each try}}
-     {{#each tags}}
-    <option value="{{this}}">{{this}}</option>
-     {{/each}}
-      {{/each}}
+    <option value="Hipster">Hipster</option>
+    <option value="Genius">Genius</option>
+    <option value="Idler">Idler</option>
+    <option value="Geek">Geek</option>
   </select>
 
-   
   {{#EasySearch.IfSearching index=index }}
     <div>Searching</div>
   {{/EasySearch.IfSearching }}
-  <ol class="leaderboard">
+
     {{#EasySearch.Each index=index }}
-      {{> player}}
+      {{> renoted}}
     {{/EasySearch.Each}}
-  </ol>
 
   {{#EasySearch.IfNoResults index=index }}
     <div class="padded no-results">No results found</div>
   {{else}}
-     
-    {{#if selectedName}}
+    {{#if selectedRenoted}}
       <div class="details">
-        <div class="name">{{selectedName.tags}}</div>
+        <div class="name">{{selectedRenoted}}</div>
         <button class="inc">Add 5 points</button>
       </div>
     {{else}}
-      <div class="message">Click a player to select</div>
+      <div class="message">Click an annotation to select</div>
     {{/if}}
   {{/EasySearch.IfNoResults }}
 
@@ -46,10 +42,10 @@
   {{! > EasySearch.LoadMore index=index }}
 
   {{#if showMore}}
-    {{> EasySearch.Input name="mini-index" index=index attributes=inputAttributes }}
+    {{> EasySearch.Input renoted_id="mini-index" index=index attributes=inputAttributes }}
 
     <ul>
-      {{#EasySearch.Each name="mini-index" index=index }}
+      {{#EasySearch.Each renoted_id="mini-index" index=index }}
         <li>{{renoted_id}}</li>
       {{/EasySearch.Each}}
     </ul>
