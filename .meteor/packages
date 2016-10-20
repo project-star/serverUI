@@ -27,3 +27,9 @@ accounts-base@1.2.11
 standard-minifier-css@1.2.0_1
 standard-minifier-js@1.2.0_1
 shell-server@0.2.1
+autopublish
+mizzao:bootstrap-3
+msavin:mongol
+aldeed:autoform
+aldeed:collection2
+iron:router

@@ -1,15 +1,18 @@
 <template name="player">
   <li class="player {{selected}}">
+    {{#if editing}}
+    <input type="text" id="quotedtexteditexit"  value="{{quotedtext}}" />
+  {{else}}
     <span class="name"><a href={{document.web_uri}}>{{document.web_uri}}</a></span>
-    <span class="metadata">
-      <span class="category">{{created}}</span>
-    <p>
-   <span class="score"> {{document.title}} </span></p>
-   <span>{{quotedtext}}</span>
+    <span class="category">{{created}}</span>
+    <button class="btn btn-sm btn-danger" id="delete" type="submit">Delete</button>
+    
+   <p><span class="score"> {{document.title}} </span></p>
+   <span id="quotedtextedit">{{quotedtext}}</span>
   <p>Tags:
   <span class="category"> {{#each tags}}
              {{this}}
            {{/each}}</span></p>
-     </span>
+  {{/if}}
   </li>
 </template>

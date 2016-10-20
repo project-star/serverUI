@@ -1,0 +1,19 @@
+<template name="annotationsmore">
+  <h1>Add Annotation</h1>
+
+  {{> quickForm collection="Players" id="insertPostForm" type="insert"}}
+   {{ annotations}}
+  <ul>
+    {{#each annotations}} 
+      <li><a href="{{pathFor 'annotation.show'}}">{{uri}}</a> - {{quotedtext}}</li>
+    {{/each}}
+  </ul>
+</template>
+<template name="annotations">
+<h1>All Annotation</h1>
+    {{#each annotations}}
+    {{> annotation}}
+    {{/each}}
+
+    {{value}}
+</template>
