@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Players } from '../../api/players/players.js';
 import { Renoted } from '../../api/renoted/renoted.js';
+import { Accounts } from 'meteor/accounts-base';
+ 
 var first_names = [
       "Ada",
       "Grace",

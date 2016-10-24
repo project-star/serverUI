@@ -4,7 +4,7 @@
     <input type="text" id="quotedtexteditexit"  value="{{quotedtext}}" />
   {{else}}
     <span class="name"><a href={{document.web_uri}}>{{document.web_uri}}</a></span>
-    <span class="category">{{created}}</span>
+    <span class="category">{{created}} {{username}}</span>
     <button class="btn btn-sm btn-danger" id="delete" type="submit">Delete</button>
     
    <p><span class="score"> {{document.title}} </span></p>
@@ -13,6 +13,6 @@
   <span class="category"> {{#each tags}}
              {{this}}
            {{/each}}</span></p>
-  {{/if}}
+{{/if}}
   </li>
 </template>

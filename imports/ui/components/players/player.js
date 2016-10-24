@@ -8,8 +8,13 @@ Template.player.helpers({
 	},
         editing: function() {
                 return Session.get("target"+this.__originalId);
-        }
+        
+        },
+        isLoggeduser: function (owner) {
+                return (owner === Meteor.userId());
+  }
 });
+
 
 
 

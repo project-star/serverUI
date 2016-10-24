@@ -13,7 +13,7 @@ Template.leaderboard.helpers({
 	},
 	players: function () {
                 console.log (Players.find({}))
-                var value = Players.find().fetch();
+                var value = Players.find({"owner":Meteor.userId()}).fetch();
 
 
                 return value;
@@ -31,6 +31,9 @@ Template.leaderboard.helpers({
 	showMore: function () {
 		return false;
 	},
+        isLoggeduser: function (owner) {
+                return (owner === Meteor.userId());
+        },
 	renderTmpl: () => Template.renderTemplate
 });
 
@@ -52,3 +55,4 @@ Template.leaderboard.try=function(){
          
     return value;
 }
+

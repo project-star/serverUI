@@ -12,19 +12,20 @@ export const PlayersIndex = new EasySearch.Index({
         categoryFilter = options.search.props.categoryFilter;
       if (_.isString(categoryFilter) && !_.isEmpty(categoryFilter)) {
         selector.tags = categoryFilter;
+        selector.owner = Meteor.userId();
       }
 
       return selector;
     }
   }),
   collection: Players,
-  fields: ['renoted_id','tags','document.web_uri','text','quotedtext','document.title'],
+  fields: ['renoted_id','tags','document.web_uri','text','quotedtext','document.title','username'],
   defaultSearchOptions: {
     limit: 8
   },
-  permission: () => {
+  permission: (options) => {
     //console.log(Meteor.userId());
-
-    return true;
+    //return (Meteor.userId() === options.owner);
+     return true;
   }
 });
