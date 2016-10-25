@@ -1,5 +1,5 @@
 <template name="leaderboard">
-  {{> navbar}}
+  
   {{#if currentUser}}
   {{> EasySearch.Input index=index attributes=inputAttributes }}
 
@@ -10,15 +10,6 @@
       <div class="padded count-results">{{resultsCount}} results found.</div>
     {{/if}}
   {{/EasySearch.IfInputEmpty}}
-  Select Tags to filter:
-  <select class="category-filter">
-    <option value="">All</option>
-     {{#each try}}
-     {{#each tags}}
-    <option value="{{this}}">{{this}}</option>
-     {{/each}}
-      {{/each}}
-  </select>
 
    
   {{#EasySearch.IfSearching index=index }}
@@ -71,6 +62,38 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#">Renoted</a>
+     {{> loginButtons}}
     </div>
   </div>
+</template>
+
+
+<template name="first">
+  <div class="container">
+    <div class="row">
+      {{> navbar}}
+    </div>
+    <div class="row">
+       <div class="col-md-2">
+       </div>
+       <div class="col-md-8">
+       {{> tagsbar}}
+       {{> leaderboard}}
+       </div>
+
+        <div class="col-md-2">
+       Hello World
+       </div>       
+     </div>
+    </div>
+</template>
+<template name="tagsbar">
+    {{#each tagsall}}
+      {{#if isLoggeduser owner }}
+     {{#each tags}}
+     <button type="button" class="btn btn-default category-filter" value={{this}}>{{this}}</button>
+     {{/each}}
+     {{/if}}
+      {{/each}}
+   <button type="button" class="btn btn-default category-filter" value="">All</button>
 </template>

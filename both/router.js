@@ -3,7 +3,7 @@ import { Players } from '../imports/api/players/players.js';
 Router.configure({
   layoutTemplate: 'main'
 });
-Router.route('/','leaderboard');
+Router.route('/','first');
 Router.route('/list', 'annotations');
 Router.route('/annotations/:_id', function () {
   var item = Players.findOne({_id: this.params._id});

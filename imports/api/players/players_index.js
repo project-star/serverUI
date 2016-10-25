@@ -12,7 +12,6 @@ export const PlayersIndex = new EasySearch.Index({
         categoryFilter = options.search.props.categoryFilter;
       if (_.isString(categoryFilter) && !_.isEmpty(categoryFilter)) {
         selector.tags = categoryFilter;
-        selector.owner = Meteor.userId();
       }
 
       return selector;
