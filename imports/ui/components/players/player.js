@@ -12,7 +12,12 @@ Template.player.helpers({
         },
         isLoggeduser: function (owner) {
                 return (owner === Meteor.userId());
-  }
+        },
+        selectedName: function () {
+                var selectedUri = PlayersIndex.config.mongoCollection.findOne({ __originalId: Session.get("selectedPlayer") });
+                return selectedUri;
+        }
+  
 });
 
 
@@ -38,6 +43,9 @@ Template.player.events({
                 Players.update(value._id,{$set: {quotedtext: e.currentTarget.value}},{strict: true});
                 Session.set("target"+this.__originalId,false);
               }
+          },
+         'click .urledit': function(){
+                Session.set("editannot",true);
                             
         }        
         

@@ -23,6 +23,9 @@ Template.leaderboard.helpers({
 		var player = PlayersIndex.config.mongoCollection.findOne({ __originalId: Session.get("selectedPlayer") });
 		return player;
 	},
+        editannotations: function(){
+               return Session.get("editannot");
+        },
 	index: function () {
 		return PlayersIndex;
 	},
@@ -39,8 +42,8 @@ Template.leaderboard.helpers({
 });
 
 Template.leaderboard.events({
-	'click .inc': function () {
-		Meteor.call('updateScore', Session.get("selectedPlayer"));
+	'click .editpage': function () {
+		Session.set("editannot",true);
 	},
 	'change .category-filter': function (e) {
 		PlayersIndex.getComponentMethods()
@@ -98,5 +101,39 @@ Template.tagsbar.events({
                 PlayersIndex.getComponentMethods()
                         .addProps('categoryFilter', $(e.target).val());
         }
+
+});
+Template.editpage.helpers({
+        selectedurllist: function () {
+                var player = PlayersIndex.config.mongoCollection.findOne({ __originalId: Session.get("selectedPlayer") });
+                var value = Players.find({"owner":Meteor.userId(),"document.web_uri":player.document.web_uri})
+                console.log("in edit page")
+
+
+                return value;
+        },
+        selectedName: function () {
+                var player = PlayersIndex.config.mongoCollection.findOne({ __originalId: Session.get("selectedPlayer") });
+                console.log(player.document.web_uri)
+                console.log("in edit page")
+                return player;
+        }
+        
+});
+Template.editpage.events({
+        'click .doneedit': function () {
+          Session.set("editannot",false);
+        }
+
+});
+Template.first.helpers({
+        selectedurl: function () {
+                var value = Session.get("selectedPlayer");
+                Session.set("selectedurl",value);
+                return value;
+        },
+         editannotations: function(){
+               return Session.get("editannot");
+        } 
 
 });

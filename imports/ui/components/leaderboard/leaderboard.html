@@ -1,6 +1,8 @@
 <template name="leaderboard">
-  
   {{#if currentUser}}
+  {{#if editannotations}}
+   {{> editpage}}
+  {{/if}}
   {{> EasySearch.Input index=index attributes=inputAttributes }}
 
   {{#EasySearch.IfInputEmpty index=index }}
@@ -30,7 +32,7 @@
     {{#if selectedName}}
       <div class="details">
         <div class="name">{{selectedName.tags}}</div>
-        <button class="inc">Add 5 points</button>
+        <button class="editpage">Edit Annotations</button>
       </div>
     {{else}}
       <div class="message">Click a player to select</div>
@@ -74,16 +76,30 @@
       {{> navbar}}
     </div>
     <div class="row">
-       <div class="col-md-2">
-       </div>
-       <div class="col-md-8">
+     <div class="col-md-6"> 
        {{> tagsbar}}
        {{> leaderboard}}
        </div>
 
-        <div class="col-md-2">
-       Hello World
+        <div class="col-md-6">
+       {{> editpage}}
        </div>       
+     </div>
+    </div>
+</template>
+<template name="second">
+  <div class="container">
+    <div class="row">
+      {{> navbar}}
+    </div>
+    <div class="row">
+       <div class="col-md-6">
+       {{> leaderboard}}
+       </div>
+
+        <div class="col-md-6">
+       Hello World
+       </div>
      </div>
     </div>
 </template>
@@ -96,4 +112,22 @@
      {{/if}}
       {{/each}}
    <button type="button" class="btn btn-default category-filter" value="">All</button>
+</template>
+
+<template name="editpage">
+<div class=""> <h4> Edit the available annotations </h4></div>
+<h5> <a href={{selectedName.document.web_uri}}>{{selectedName.document.web_uri}}</a> </h5>
+   <p><h4> {{selectedName.document.title}} </h4></p>
+  <p><h5>Page Tags: </h5>
+  <span class="category"> {{#each selectedName.tags}}
+             {{this}}
+           {{/each}}</span></p>
+   {{#each selectedurllist}}
+ <div class="availablequotes"> <ul>  <li>   {{quotedtext}} 
+<p><h5>Annotation Tags:</h5>
+  <span class="category"> {{#each tags}}
+             {{this}}
+           {{/each}}</span></p></li></ul></div>
+   {{/each}}
+<button class="doneedit">Done Editing</button>
 </template>
